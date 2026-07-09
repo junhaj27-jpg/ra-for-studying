@@ -1,0 +1,109 @@
+﻿{
+  "seedVersion": "0.2.0",
+  "purpose": "AIDLC-RA 포트폴리오 시연용 의료기기 RA 프로젝트 seed 데이터",
+  "disclaimer": "본 seed 데이터는 실제 인허가 제출 문서가 아니라 RA 문서 작성 보조 흐름을 보여주는 예시입니다.",
+  "projects": [
+    {
+      "id": "SEED-HR-001",
+      "name": "심박수 기반 운동강도 측정기",
+      "deviceType": "웨어러블 측정 보조 기기",
+      "softwareSafetyClass": "IEC 62304 Class A 예시",
+      "intendedUse": "운동 중 심박수 데이터를 기반으로 운동강도 구간을 표시",
+      "notMedicalClaim": "진단, 치료, 처방, 응급상황 판단을 수행하지 않음",
+      "requirements": [
+        {"id": "REQ-HR-001", "type": "functional", "text": "심박수 입력값에 따라 운동강도 구간을 표시한다.", "mappedRisk": "RISK-HR-001"},
+        {"id": "REQ-HR-002", "type": "safety", "text": "비정상 심박수 입력 시 확인 메시지를 표시한다.", "mappedRisk": "RISK-HR-001"},
+        {"id": "REQ-HR-003", "type": "regulatory", "text": "비진단용 안내 문구를 표시한다.", "mappedRisk": "RISK-HR-002"}
+      ],
+      "risks": [
+        {"id": "RISK-HR-001", "hazard": "부정확한 입력", "hazardousSituation": "잘못된 운동강도 표시", "probability": 3, "severity": 3, "control": "입력 범위 검증", "verificationItem": "TEST-HR-002"},
+        {"id": "RISK-HR-002", "hazard": "의료적 오인", "hazardousSituation": "사용자가 운동강도 표시를 처방으로 오해", "probability": 2, "severity": 4, "control": "비진단용 고지", "verificationItem": "TEST-HR-003"}
+      ],
+      "testScenarios": [
+        {"id": "TEST-HR-001", "mappedRequirement": "REQ-HR-001", "mappedRisk": "RISK-HR-001", "title": "정상 입력 구간 표시 시험", "acceptanceCriteria": "입력값별 구간 라벨 일치"},
+        {"id": "TEST-HR-002", "mappedRequirement": "REQ-HR-002", "mappedRisk": "RISK-HR-001", "title": "비정상 입력 예외 처리 시험", "acceptanceCriteria": "확인 메시지 표시"},
+        {"id": "TEST-HR-003", "mappedRequirement": "REQ-HR-003", "mappedRisk": "RISK-HR-002", "title": "비진단용 문구 표시 시험", "acceptanceCriteria": "주요 화면에 고지 표시"}
+      ]
+    },
+    {
+      "id": "SEED-MRI-002",
+      "name": "MRI 3D 시각화 연구용 소프트웨어",
+      "deviceType": "연구용 의료영상 시각화 소프트웨어",
+      "softwareSafetyClass": "IEC 62304 Class A 예시",
+      "intendedUse": "MRI 연구 데이터를 3D로 시각화하여 연구와 교육 목적으로 확인",
+      "notMedicalClaim": "진단 판독, 병변 검출, 치료 계획 수립을 수행하지 않음",
+      "requirements": [
+        {"id": "REQ-MRI-001", "type": "functional", "text": "MRI 연구 데이터를 3D 뷰어에 표시한다.", "mappedRisk": "RISK-MRI-001"},
+        {"id": "REQ-MRI-002", "type": "regulatory", "text": "연구용/비진단용 문구를 표시한다.", "mappedRisk": "RISK-MRI-002"}
+      ],
+      "risks": [
+        {"id": "RISK-MRI-001", "hazard": "렌더링 실패", "hazardousSituation": "데이터 표시 누락 오해", "probability": 2, "severity": 3, "control": "처리 상태 및 오류 메시지", "verificationItem": "TEST-MRI-001"},
+        {"id": "RISK-MRI-002", "hazard": "진단용 오인", "hazardousSituation": "사용자가 연구용 화면을 임상 판단 근거로 오해", "probability": 2, "severity": 5, "control": "비진단용 고지", "verificationItem": "TEST-MRI-002"}
+      ],
+      "testScenarios": [
+        {"id": "TEST-MRI-001", "mappedRequirement": "REQ-MRI-001", "mappedRisk": "RISK-MRI-001", "title": "3D 뷰어 표시 시험", "acceptanceCriteria": "샘플 데이터가 뷰어에 표시"},
+        {"id": "TEST-MRI-002", "mappedRequirement": "REQ-MRI-002", "mappedRisk": "RISK-MRI-002", "title": "비진단용 고지 시험", "acceptanceCriteria": "결과 화면에 고지 표시"}
+      ]
+    },
+    {
+      "id": "SEED-DOC-003",
+      "name": "의료기관 문서 자동화 시스템",
+      "deviceType": "의료기관 행정 문서 자동화 도구",
+      "softwareSafetyClass": "비의료 판단 문서 보조 도구 예시",
+      "intendedUse": "의료기관 내부 양식을 기반으로 행정 문서 초안 작성과 검토 흐름을 보조",
+      "notMedicalClaim": "환자 진단, 처방 추천, 치료방침 결정을 수행하지 않음",
+      "requirements": [
+        {"id": "REQ-DOC-001", "type": "functional", "text": "내부 양식을 기반으로 문서 초안을 생성한다.", "mappedRisk": "RISK-DOC-001"},
+        {"id": "REQ-DOC-002", "type": "quality", "text": "승인 전 문서를 초안 상태로 표시한다.", "mappedRisk": "RISK-DOC-002"}
+      ],
+      "risks": [
+        {"id": "RISK-DOC-001", "hazard": "생성 문서 무검토 사용", "hazardousSituation": "자동 생성 결과를 최종 문서로 오인", "probability": 3, "severity": 3, "control": "검토 필요 문구", "verificationItem": "TEST-DOC-001"},
+        {"id": "RISK-DOC-002", "hazard": "승인 전 문서 배포", "hazardousSituation": "초안이 최종본처럼 사용", "probability": 2, "severity": 3, "control": "상태 표시 및 권한 제어", "verificationItem": "TEST-DOC-002"}
+      ],
+      "testScenarios": [
+        {"id": "TEST-DOC-001", "mappedRequirement": "REQ-DOC-001", "mappedRisk": "RISK-DOC-001", "title": "양식 기반 초안 생성 시험", "acceptanceCriteria": "필수 항목 채움"},
+        {"id": "TEST-DOC-002", "mappedRequirement": "REQ-DOC-002", "mappedRisk": "RISK-DOC-002", "title": "승인 상태 표시 시험", "acceptanceCriteria": "초안/승인 상태 구분"}
+      ]
+    },
+    {
+      "id": "SEED-ALARM-004",
+      "name": "병동 알림 설정 검토 보조 시스템",
+      "deviceType": "의료기관 운영 보조 소프트웨어",
+      "softwareSafetyClass": "운영 보조 예시",
+      "intendedUse": "병동 내부 알림 설정 변경 이력을 문서화하고 검토 체크리스트를 제공",
+      "notMedicalClaim": "환자 상태 판단, 응급 알람 판정, 치료 지시를 수행하지 않음",
+      "requirements": [
+        {"id": "REQ-ALM-001", "type": "functional", "text": "알림 설정 변경 이력을 기록한다.", "mappedRisk": "RISK-ALM-001"},
+        {"id": "REQ-ALM-002", "type": "quality", "text": "변경 승인 전 검토 체크리스트를 표시한다.", "mappedRisk": "RISK-ALM-002"}
+      ],
+      "risks": [
+        {"id": "RISK-ALM-001", "hazard": "변경 이력 누락", "hazardousSituation": "설정 변경 근거 추적 불가", "probability": 3, "severity": 2, "control": "변경관리 기록 필수화", "verificationItem": "TEST-ALM-001"},
+        {"id": "RISK-ALM-002", "hazard": "승인 전 변경 적용", "hazardousSituation": "검토되지 않은 설정이 운영에 반영", "probability": 2, "severity": 4, "control": "승인 상태 분리", "verificationItem": "TEST-ALM-002"}
+      ],
+      "testScenarios": [
+        {"id": "TEST-ALM-001", "mappedRequirement": "REQ-ALM-001", "mappedRisk": "RISK-ALM-001", "title": "변경 이력 기록 시험", "acceptanceCriteria": "변경자, 사유, 일시 기록"},
+        {"id": "TEST-ALM-002", "mappedRequirement": "REQ-ALM-002", "mappedRisk": "RISK-ALM-002", "title": "승인 전 상태 분리 시험", "acceptanceCriteria": "승인 전 운영 반영 제한 표시"}
+      ]
+    },
+    {
+      "id": "SEED-QMS-005",
+      "name": "의료기기 QMS 문서 검토 보조 시스템",
+      "deviceType": "품질문서 검토 보조 플랫폼",
+      "softwareSafetyClass": "RA/QMS 문서 보조 예시",
+      "intendedUse": "품질문서의 누락 항목, 변경 영향, 추적성 연결 여부를 검토",
+      "notMedicalClaim": "의료 판단, 인허가 승인 판단, 법적 규제 자문을 수행하지 않음",
+      "requirements": [
+        {"id": "REQ-QMS-001", "type": "functional", "text": "문서 간 ID 불일치를 검출한다.", "mappedRisk": "RISK-QMS-001"},
+        {"id": "REQ-QMS-002", "type": "quality", "text": "RAG 근거 출처를 결과에 표시한다.", "mappedRisk": "RISK-QMS-002"}
+      ],
+      "risks": [
+        {"id": "RISK-QMS-001", "hazard": "문서 간 불일치 미검출", "hazardousSituation": "검토자가 누락 항목을 인지하지 못함", "probability": 2, "severity": 3, "control": "규칙 기반 검토 결과 표시", "verificationItem": "TEST-QMS-001"},
+        {"id": "RISK-QMS-002", "hazard": "근거 없는 문서 생성", "hazardousSituation": "작성 근거 확인 불가", "probability": 3, "severity": 3, "control": "RAG 출처 표시", "verificationItem": "TEST-QMS-002"}
+      ],
+      "testScenarios": [
+        {"id": "TEST-QMS-001", "mappedRequirement": "REQ-QMS-001", "mappedRisk": "RISK-QMS-001", "title": "ID 불일치 검출 시험", "acceptanceCriteria": "누락/불일치 항목 표시"},
+        {"id": "TEST-QMS-002", "mappedRequirement": "REQ-QMS-002", "mappedRisk": "RISK-QMS-002", "title": "RAG 출처 표시 시험", "acceptanceCriteria": "출처 ID와 문서명 표시"}
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block title %}{{ title }} | AIDLC-RA{% endblock %}
 
@@ -133,5 +133,28 @@
         </div>
       </section>
     </div>
+    <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-emerald-600">Advanced RA Automation</p>
+          <h2 class="mt-1 text-lg font-black text-slate-900">RA 포트폴리오 고도화 기능</h2>
+          <p class="mt-1.5 text-sm leading-6 text-slate-500">실제 인허가를 대신하지 않고, RA 문서 작성 보조와 정합성 검토 지원에 필요한 자동화 규칙을 서비스 모듈로 분리했습니다.</p>
+        </div>
+        <span class="rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-white">AIDLC-RA v0.2</span>
+      </div>
+
+      <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"><p class="text-sm font-bold text-slate-900">Word/PDF Template</p><p class="mt-1 text-xs leading-5 text-slate-500">RA 문서 패키지 출력 manifest와 필수 섹션 정의</p></div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"><p class="text-sm font-bold text-slate-900">ISO 14971 Risk</p><p class="mt-1 text-xs leading-5 text-slate-500">발생가능성·심각도 기반 초기/잔여 위험도 계산</p></div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"><p class="text-sm font-bold text-slate-900">IEC 62304 Trace</p><p class="mt-1 text-xs leading-5 text-slate-500">소프트웨어 요구사항과 검증시험 커버리지 확인</p></div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"><p class="text-sm font-bold text-slate-900">V&V Plan Rules</p><p class="mt-1 text-xs leading-5 text-slate-500">요구사항·위험·시험 기반 검증계획 초안 생성</p></div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"><p class="text-sm font-bold text-slate-900">Rule Engine</p><p class="mt-1 text-xs leading-5 text-slate-500">누락 시험, 미연결 위험, 범위 고지 누락 검출</p></div>
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3"><p class="text-sm font-bold text-slate-900">RAG Citations</p><p class="mt-1 text-xs leading-5 text-slate-500">근거 문장 출처 ID, 문서명, 섹션, 페이지 표시</p></div>
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3"><p class="text-sm font-bold text-slate-900">Change Impact</p><p class="mt-1 text-xs leading-5 text-slate-500">변경 ID 기준 영향 문서와 재검증 필요 여부 분석</p></div>
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3"><p class="text-sm font-bold text-slate-900">Traceability Graph</p><p class="mt-1 text-xs leading-5 text-slate-500">Validation Report용 요구사항-위험-시험 노드/엣지 생성</p></div>
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3"><p class="text-sm font-bold text-slate-900">Seed Projects</p><p class="mt-1 text-xs leading-5 text-slate-500">심박수, MRI, 문서 자동화, 알림, QMS 예시 데이터</p></div>
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3"><p class="text-sm font-bold text-slate-900">Portfolio Report</p><p class="mt-1 text-xs leading-5 text-slate-500">사용자별 RA 프로젝트 Markdown 리포트 출력</p></div>
+      </div>
+    </section>
   </section>
 {% endblock %}

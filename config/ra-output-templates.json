@@ -1,0 +1,73 @@
+﻿{
+  "templatePackage": "AIDLC-RA Word/PDF Regulatory Document Package",
+  "version": "0.2.0",
+  "disclaimer": "본 프로젝트는 의료 진단 또는 치료 목적의 소프트웨어가 아니라, 의료기기 개발 및 RA 문서 작성 과정을 보조하기 위한 포트폴리오용 문서 자동화 플랫폼입니다.",
+  "renderTargets": ["docx", "pdf"],
+  "commonSections": [
+    "문서 목적",
+    "적용 범위",
+    "입력 근거 및 RAG 출처",
+    "본문",
+    "검토 기준",
+    "추적성 연결",
+    "승인 및 변경 이력"
+  ],
+  "templates": [
+    {
+      "key": "requirements",
+      "title": "요구사항정의서",
+      "fileNamePattern": "{project_id}-URS-{version}",
+      "requiredFields": ["intended_use", "user_profile", "use_environment", "functional_requirements", "non_functional_requirements", "excluded_claims"],
+      "outputChecks": ["사용 목적과 제외 범위가 구분되어야 함", "각 요구사항은 고유 ID를 가져야 함", "진단·치료 목적 오인 표현이 없어야 함"]
+    },
+    {
+      "key": "srs",
+      "title": "소프트웨어 요구사항 명세서",
+      "fileNamePattern": "{project_id}-SRS-{version}",
+      "requiredFields": ["srs_id", "input", "output", "exception_handling", "security_requirement", "mapped_risk", "mapped_test"],
+      "outputChecks": ["IEC 62304 스타일 요구사항 ID 사용", "시험 가능한 문장으로 작성", "위험 및 시험 연결 확인"]
+    },
+    {
+      "key": "risk",
+      "title": "위험관리표",
+      "fileNamePattern": "{project_id}-RISK-{version}",
+      "requiredFields": ["hazard", "hazardous_situation", "harm", "probability", "severity", "control", "residual_risk", "verification_item"],
+      "outputChecks": ["ISO 14971 스타일 위험도 계산", "위험통제와 검증항목 연결", "잔여위험 허용 근거 표시"]
+    },
+    {
+      "key": "vv_plan",
+      "title": "검증 및 밸리데이션 계획서",
+      "fileNamePattern": "{project_id}-VVP-{version}",
+      "requiredFields": ["scope", "test_environment", "test_data", "acceptance_criteria", "responsibility", "deliverables"],
+      "outputChecks": ["요구사항별 검증 방법 누락 없음", "위험통제 항목의 시험 연결", "합격 기준 명확성"]
+    },
+    {
+      "key": "test_scenario",
+      "title": "통합시험 시나리오",
+      "fileNamePattern": "{project_id}-ITS-{version}",
+      "requiredFields": ["test_id", "mapped_requirement", "mapped_risk", "precondition", "steps", "expected_result", "acceptance_criteria"],
+      "outputChecks": ["요구사항과 시험 절차 연결", "예외 상황 시험 포함", "실제 결과 기록 영역 포함"]
+    },
+    {
+      "key": "change_record",
+      "title": "변경관리 기록",
+      "fileNamePattern": "{project_id}-CHG-{version}",
+      "requiredFields": ["change_id", "reason", "affected_requirements", "affected_risks", "revalidation_required", "regulatory_impact"],
+      "outputChecks": ["변경영향 분석 포함", "재검증 필요 여부 판단", "추적성 매트릭스 업데이트 여부 확인"]
+    },
+    {
+      "key": "traceability",
+      "title": "추적성 매트릭스",
+      "fileNamePattern": "{project_id}-TM-{version}",
+      "requiredFields": ["requirement_id", "risk_id", "test_id", "verification_result", "change_id", "status"],
+      "outputChecks": ["요구사항-위험-시험-결과-변경 연결", "미검증 위험통제 표시", "누락 ID 표시"]
+    },
+    {
+      "key": "validation_report",
+      "title": "RA 문서 정합성 검토 결과",
+      "fileNamePattern": "{project_id}-VR-{version}",
+      "requiredFields": ["coverage", "missing_documents", "inconsistencies", "graph", "reviewer_action"],
+      "outputChecks": ["누락 문서 체크", "문서 간 불일치 검출", "요구사항-위험-시험 연결 그래프 포함"]
+    }
+  ]
+}

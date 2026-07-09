@@ -276,3 +276,30 @@ AIDLC-RA는 다음을 수행하지 않습니다.
 - Validation Report에서 요구사항-위험-시험 연결 그래프 시각화
 - 의료기기 예시 프로젝트 seed 데이터 추가
 - 사용자별 RA 프로젝트 포트폴리오 리포트 출력
+
+---
+
+## 16. v0.2 고도화 구현 내역
+
+이번 버전에서는 향후 계획으로만 남겨두었던 항목을 포트폴리오 시연 가능한 서비스 로직과 설정 파일로 확장했습니다.
+
+| 고도화 항목 | 반영 내용 |
+| --- | --- |
+| 실제 RA 문서 Word/PDF 템플릿 출력 고도화 | `config/ra-output-templates.json`와 export manifest 생성 로직 추가 |
+| ISO 14971 기반 위험도 계산 | 발생가능성·심각도 기반 초기/잔여 위험도 계산 함수 추가 |
+| IEC 62304 스타일 추적성 | 요구사항-위험-시험 매핑과 커버리지 계산 함수 추가 |
+| V&V 계획서 자동 생성 규칙 | 요구사항, 위험관리, 시험 시나리오 기반 V&V 계획 초안 생성 |
+| 문서 간 불일치 검출 | 누락 시험, 미연결 위험, 범위 고지 누락 검출 규칙 추가 |
+| RAG 근거 출처 표시 | 근거 문장 출처 ID, 문서명, 섹션, 페이지 정규화 함수 추가 |
+| 변경관리 영향 분석 | 변경 ID 기준 영향 문서와 재검증 필요 여부 분석 |
+| Validation Report 그래프 | 요구사항-위험-시험 노드/엣지 생성 및 상세 화면 시각화 블록 추가 |
+| 의료기기 seed 데이터 | 심박수, MRI, 문서 자동화, 병동 알림, QMS 예시 프로젝트 추가 |
+| 사용자별 포트폴리오 리포트 | 사용자별 RA 프로젝트 Markdown 리포트 출력 함수 추가 |
+
+핵심 구현 파일:
+
+- `ALPLED-WEB/docs/ra_automation.py`
+- `config/ra-output-templates.json`
+- `samples/ra-seed-projects.json`
+- `docs/ra-advanced-features.md`
+- `tests/test_ra_automation.py`
