@@ -1,0 +1,147 @@
+﻿{
+  "notice": "본 프로젝트는 의료 진단 또는 치료 목적의 소프트웨어가 아니라, 의료기기 개발 및 RA 문서 작성 과정을 보조하기 위한 포트폴리오용 문서 자동화 플랫폼입니다.",
+  "projects": [
+    {
+      "id": "MD-EX-001",
+      "name": "심박수 기반 운동강도 측정기",
+      "category": "웨어러블 측정 보조 기기",
+      "intendedUse": "운동 중 심박수 데이터를 기반으로 사용자에게 운동강도 구간을 표시하는 기기 예시",
+      "notMedicalClaim": "질병 진단, 치료, 처방 또는 응급상황 판단을 수행하지 않음",
+      "documentScope": [
+        "요구사항정의서",
+        "소프트웨어 요구사항 명세서",
+        "위험관리표",
+        "통합시험 시나리오",
+        "추적성 매트릭스"
+      ],
+      "requirements": [
+        {
+          "id": "REQ-HR-001",
+          "text": "시스템은 입력된 심박수 값을 기준으로 운동강도 구간을 표시해야 한다.",
+          "type": "functional"
+        },
+        {
+          "id": "REQ-HR-002",
+          "text": "시스템은 측정값이 누락되거나 비정상 범위일 경우 사용자에게 데이터 확인 메시지를 표시해야 한다.",
+          "type": "safety"
+        }
+      ],
+      "risks": [
+        {
+          "id": "RISK-HR-001",
+          "hazard": "부정확한 심박수 입력",
+          "hazardousSituation": "잘못된 운동강도 구간 표시",
+          "control": "비정상 입력값 감지 및 사용자 확인 메시지 표시",
+          "verificationItem": "TEST-HR-002"
+        }
+      ],
+      "testScenarios": [
+        {
+          "id": "TEST-HR-001",
+          "title": "정상 심박수 입력 시 운동강도 구간 표시 확인",
+          "mappedRequirement": "REQ-HR-001"
+        },
+        {
+          "id": "TEST-HR-002",
+          "title": "비정상 심박수 입력 시 데이터 확인 메시지 표시 확인",
+          "mappedRequirement": "REQ-HR-002"
+        }
+      ]
+    },
+    {
+      "id": "MD-EX-002",
+      "name": "MRI 3D 시각화 연구용 소프트웨어",
+      "category": "연구용 의료영상 시각화 소프트웨어",
+      "intendedUse": "MRI 데이터를 3D 형태로 시각화하여 연구 및 교육 목적으로 확인하는 소프트웨어 예시",
+      "notMedicalClaim": "진단 판독, 병변 검출, 치료 계획 수립 또는 의료 판단을 수행하지 않음",
+      "documentScope": [
+        "요구사항정의서",
+        "소프트웨어 요구사항 명세서",
+        "검증 및 밸리데이션 계획서",
+        "통합시험 시나리오",
+        "변경관리 기록",
+        "추적성 매트릭스"
+      ],
+      "requirements": [
+        {
+          "id": "REQ-MRI-001",
+          "text": "시스템은 업로드된 MRI 연구 데이터를 3D 뷰어에서 표시해야 한다.",
+          "type": "functional"
+        },
+        {
+          "id": "REQ-MRI-002",
+          "text": "시스템은 화면에 연구용 소프트웨어이며 진단용이 아니라는 문구를 표시해야 한다.",
+          "type": "regulatory"
+        }
+      ],
+      "risks": [
+        {
+          "id": "RISK-MRI-001",
+          "hazard": "연구용 시각화 결과의 진단용 오인",
+          "hazardousSituation": "사용자가 시각화 결과를 임상 판단 근거로 오해",
+          "control": "연구용 및 비진단용 고지 문구 표시",
+          "verificationItem": "TEST-MRI-002"
+        }
+      ],
+      "testScenarios": [
+        {
+          "id": "TEST-MRI-001",
+          "title": "MRI 연구 데이터 업로드 후 3D 시각화 표시 확인",
+          "mappedRequirement": "REQ-MRI-001"
+        },
+        {
+          "id": "TEST-MRI-002",
+          "title": "비진단용 고지 문구 표시 확인",
+          "mappedRequirement": "REQ-MRI-002"
+        }
+      ]
+    },
+    {
+      "id": "MD-EX-003",
+      "name": "의료기관 문서 자동화 시스템",
+      "category": "의료기관 행정 문서 자동화 도구",
+      "intendedUse": "의료기관 내부의 반복 문서 작성과 검토 흐름을 보조하는 문서 자동화 시스템 예시",
+      "notMedicalClaim": "환자 진단, 치료방침 결정, 처방 추천 또는 임상 의사결정을 수행하지 않음",
+      "documentScope": [
+        "요구사항정의서",
+        "위험관리표",
+        "검증 및 밸리데이션 계획서",
+        "변경관리 기록",
+        "추적성 매트릭스"
+      ],
+      "requirements": [
+        {
+          "id": "REQ-DOC-001",
+          "text": "시스템은 업로드된 내부 양식에 맞춰 문서 초안을 생성해야 한다.",
+          "type": "functional"
+        },
+        {
+          "id": "REQ-DOC-002",
+          "text": "시스템은 생성 결과에 사용자 검토 필요 문구를 표시해야 한다.",
+          "type": "regulatory"
+        }
+      ],
+      "risks": [
+        {
+          "id": "RISK-DOC-001",
+          "hazard": "생성 문서의 무검토 사용",
+          "hazardousSituation": "사용자가 자동 생성 결과를 최종 승인 문서로 오인",
+          "control": "사용자 검토 필요 표시 및 승인 단계 분리",
+          "verificationItem": "TEST-DOC-002"
+        }
+      ],
+      "testScenarios": [
+        {
+          "id": "TEST-DOC-001",
+          "title": "내부 양식 기반 문서 초안 생성 확인",
+          "mappedRequirement": "REQ-DOC-001"
+        },
+        {
+          "id": "TEST-DOC-002",
+          "title": "사용자 검토 필요 문구 표시 확인",
+          "mappedRequirement": "REQ-DOC-002"
+        }
+      ]
+    }
+  ]
+}
