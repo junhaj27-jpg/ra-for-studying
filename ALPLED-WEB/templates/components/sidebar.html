@@ -5,8 +5,8 @@
         RA
       </div>
       <div>
-        <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">AIDLC</p>
-        <p class="text-sm font-semibold text-slate-900">RA Documentation Console</p>
+        <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">AIDLC-RA</p>
+        <p class="text-sm font-semibold text-slate-900">RA Portfolio Console</p>
       </div>
     </a>
 
@@ -16,17 +16,10 @@
         <form method="post" action="{% url 'set_current_project' %}" data-current-project-form class="mt-2">
           {% csrf_token %}
           <input type="hidden" name="next" value="{{ request.get_full_path }}">
-          <select
-            name="project_sn"
-            data-current-project-select
-            class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
-            {% if not available_projects %}disabled{% endif %}
-          >
+          <select name="project_sn" data-current-project-select class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400" {% if not available_projects %}disabled{% endif %}>
             {% if available_projects %}
               {% for project in available_projects %}
-                <option value="{{ project.sn }}" {% if current_project and current_project.sn == project.sn %}selected{% endif %}>
-                  {{ project.name }}
-                </option>
+                <option value="{{ project.sn }}" {% if current_project and current_project.sn == project.sn %}selected{% endif %}>{{ project.name }}</option>
               {% endfor %}
             {% else %}
               <option value="">선택 가능한 RA 프로젝트가 없습니다</option>
@@ -37,50 +30,26 @@
     </div>
 
     <nav class="flex-1 space-y-2 overflow-y-auto px-3 py-4">
-      {% if request.user.is_staff %}
-        <a href="{% url 'user_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'users' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-          <span>Admin</span>
-        </a>
-      {% endif %}
-
       {% if can_manage_projects %}
-        <a href="{% url 'project_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'projects' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-          <span>Dashboard</span>
-        </a>
+        <a href="{% url 'project_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'projects' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>Dashboard</span></a>
       {% endif %}
 
-      <a href="{% url 'file_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'files' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-        <span>Project Upload</span>
-      </a>
+      <a href="{% url 'file_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'files' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>Project Upload</span></a>
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_SRS&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_SRS' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>RA Document Generator</span></a>
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_ITF&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_ITF' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>Risk Management</span></a>
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_ERD&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_ERD' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>Traceability Matrix</span></a>
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_TS&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_TS' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>Test Scenario</span></a>
+      <a href="{% url 'doc_approval_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'approvals' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>Validation Report</span></a>
+      <a href="{% url 'doc_history_list' %}?docs_cd=all" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'all' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>RA Portfolio Notes</span></a>
 
-      <a href="{% url 'doc_generate' %}?docs_cd=DOC_SRS&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_SRS' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-        <span>RA Document Generator</span>
-      </a>
-
-      <a href="{% url 'doc_generate' %}?docs_cd=DOC_ITF&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_ITF' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-        <span>Risk Management</span>
-      </a>
-
-      <a href="{% url 'doc_generate' %}?docs_cd=DOC_ERD&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_ERD' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-        <span>Traceability Matrix</span>
-      </a>
-
-      <a href="{% url 'doc_generate' %}?docs_cd=DOC_TS&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_TS' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-        <span>Test Scenario</span>
-      </a>
-
-      <a href="{% url 'doc_approval_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'approvals' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-        <span>Validation Report</span>
-      </a>
-
-      <a href="{% url 'doc_history_list' %}?docs_cd=all" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'all' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
-        <span>RA Document History</span>
-      </a>
+      {% if request.user.is_staff %}
+        <a href="{% url 'user_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'users' %}border-emerald-200 bg-emerald-50 text-emerald-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}"><span>Admin</span></a>
+      {% endif %}
     </nav>
 
     <div class="border-t border-slate-200 p-4">
       <div class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-800">
-        본 플랫폼은 진단·치료 목적이 아닌 RA 문서 작성 보조 및 검증 지원 도구입니다.
+        진단·치료 목적이 아닌 RA 문서 작성 보조 및 문서 정합성 검토 지원 도구입니다.
       </div>
       <div data-profile-url="{% url 'user_profile' %}" class="mt-3 flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-emerald-200 hover:bg-emerald-50" role="link" tabindex="0">
         <div>
@@ -89,9 +58,7 @@
         </div>
         <form method="post" action="{% url 'logout' %}">
           {% csrf_token %}
-          <button type="submit" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700">
-            Logout
-          </button>
+          <button type="submit" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700">Logout</button>
         </form>
       </div>
     </div>
